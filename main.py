@@ -27,7 +27,7 @@ def on_startup():
 @app.get("/")
 def read_root():
     return {
-            "message": "Hello World"
+            "message": "Hello World",
             "autor": "Cristian Arce"
         }
 

@@ -1,15 +1,13 @@
-# from appv1.schemas.user import UserCreate
-from fastapi import FastAPI # type: ignore
-from db.database import test_db_connection
-from appv1.routers import category, login, roles, users
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.schemas.user import UserCreate
+from db.database import test_db_connection
+from app.routers import login, users, users2
 
 app = FastAPI()
-
-app.include_router(users.router, prefix="/users", tags=["users"])
-app.include_router(roles.router, prefix="/role", tags=["role"])
+# Incluir en el objeto app los routers
+app.include_router(users2.router, prefix="/users", tags=["users"])
 app.include_router(login.router, prefix="/access", tags=["access"])
-app.include_router(category.router, prefix="/category", tags=["category"])
 
 # Configuración de CORS para permitir todas las solicitudes desde cualquier origen
 app.add_middleware(
@@ -27,15 +25,6 @@ def on_startup():
 @app.get("/")
 def read_root():
     return {
-            "message": "Hello World",
-            "autor": "Cristian Arce"
-        }
-
-
-# esquemas tabla rol
-# route para la tabla rol
-# insertar rol
-# en el main la ruta agregar ,prefix="/users", tags=["users"]
-
-
-
+                "message": "ADSO 2670586",
+                "autor": "Diego Legarda"
+            }

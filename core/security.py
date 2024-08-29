@@ -1,8 +1,8 @@
-from typing import Annotated
 from passlib.context import CryptContext
 from datetime import datetime, timedelta, timezone
 from jose import JWTError, jwt
 from core.config import settings
+
 # Configurar hashing de contraseñas
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -21,8 +21,6 @@ def create_access_token(data: dict):
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     return encoded_jwt
-
-
 
 # Función para verificar si un token JWT es valido
 async def verify_token(token: str):
